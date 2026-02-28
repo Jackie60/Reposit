@@ -10,8 +10,8 @@ const NEWS_API_KEY = process.env.NEWS_API_KEY;
 const DATE_RANGE_DAYS = parseInt(process.env.DATE_RANGE_DAYS, 10) || 7;
 
 const SOURCES = {
-  nyt: 'the-new-york-times',
-  wsj: 'the-wall-street-journal',
+  nyt: 'associated-press',
+  wsj: 'reuters',
 };
 
 function ensureDirs() {

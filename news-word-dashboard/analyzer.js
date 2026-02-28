@@ -208,7 +208,7 @@ function generateFindings(nytFreq, wsjFreq, shared, radar) {
   const nytMaxIdx = radar.nyt.indexOf(Math.max(...radar.nyt));
   const wsjMaxIdx = radar.wsj.indexOf(Math.max(...radar.wsj));
   if (nytMaxIdx !== wsjMaxIdx) {
-    findings.push(`NYT leans toward ${cats[nytMaxIdx]} coverage, while WSJ emphasizes ${cats[wsjMaxIdx]}.`);
+    findings.push(`AP leans toward ${cats[nytMaxIdx]} coverage, while Reuters emphasizes ${cats[wsjMaxIdx]}.`);
   } else {
     findings.push(`Both sources focus heavily on ${cats[nytMaxIdx]} this period.`);
   }
@@ -223,11 +223,11 @@ function generateFindings(nytFreq, wsjFreq, shared, radar) {
       if (gap > maxGap) {
         maxGap = gap;
         gapWord = s.word;
-        gapSource = s.nyt > s.wsj ? 'NYT' : 'WSJ';
+        gapSource = s.nyt > s.wsj ? 'AP' : 'Reuters';
       }
     }
     if (gapWord && maxGap > 1) {
-      const ratio = gapSource === 'NYT'
+      const ratio = gapSource === 'AP'
         ? (nytFreq[gapWord] / (wsjFreq[gapWord] || 1)).toFixed(1)
         : (wsjFreq[gapWord] / (nytFreq[gapWord] || 1)).toFixed(1);
       findings.push(`"${gapWord}" appears ${ratio}x more in ${gapSource} than its counterpart.`);
@@ -238,9 +238,9 @@ function generateFindings(nytFreq, wsjFreq, shared, radar) {
   const nytTotal = Object.values(nytFreq).reduce((a, b) => a + b, 0);
   const wsjTotal = Object.values(wsjFreq).reduce((a, b) => a + b, 0);
   if (nytTotal > wsjTotal * 1.2) {
-    findings.push(`NYT produced ~${Math.round((nytTotal / wsjTotal - 1) * 100)}% more word volume than WSJ this period.`);
+    findings.push(`AP produced ~${Math.round((nytTotal / wsjTotal - 1) * 100)}% more word volume than Reuters this period.`);
   } else if (wsjTotal > nytTotal * 1.2) {
-    findings.push(`WSJ produced ~${Math.round((wsjTotal / nytTotal - 1) * 100)}% more word volume than NYT this period.`);
+    findings.push(`Reuters produced ~${Math.round((wsjTotal / nytTotal - 1) * 100)}% more word volume than AP this period.`);
   }
 
   return findings;

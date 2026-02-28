@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>NYT vs WSJ Word Frequency Dashboard</title>
+  <title>AP vs Reuters Word Frequency Dashboard</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet" />
@@ -225,7 +225,7 @@
 <body>
 
 <div class="header">
-  <h1>NYT vs WSJ Coverage</h1>
+  <h1>AP vs Reuters Coverage</h1>
   <div class="meta">
     <span id="lastUpdated">Loading...</span>
     <span id="dateRange"></span>
@@ -272,11 +272,11 @@ function renderDashboard(data) {
     <div class="stats-bar">
       <div class="stat-card nyt">
         <div class="number">${data.stats.nyt_unique}</div>
-        <div class="label">NYT Unique Words</div>
+        <div class="label">AP Unique Words</div>
       </div>
       <div class="stat-card wsj">
         <div class="number">${data.stats.wsj_unique}</div>
-        <div class="label">WSJ Unique Words</div>
+        <div class="label">Reuters Unique Words</div>
       </div>
       <div class="stat-card shared">
         <div class="number">${data.stats.shared}</div>
@@ -293,11 +293,11 @@ function renderDashboard(data) {
   app.insertAdjacentHTML('beforeend', `
     <div class="chart-row">
       <div class="chart-box">
-        <h3 style="color:${NYT_COLOR}">NYT Top 25 Words</h3>
+        <h3 style="color:${NYT_COLOR}">AP Top 25 Words</h3>
         <canvas id="nytTop25"></canvas>
       </div>
       <div class="chart-box">
-        <h3 style="color:${WSJ_COLOR}">WSJ Top 25 Words</h3>
+        <h3 style="color:${WSJ_COLOR}">Reuters Top 25 Words</h3>
         <canvas id="wsjTop25"></canvas>
       </div>
     </div>`);
@@ -310,8 +310,8 @@ function renderDashboard(data) {
     <div class="section">
       <h2>Shared Word Comparison</h2>
       <div class="legend-inline">
-        <span class="nyt">NYT</span>
-        <span class="wsj">WSJ</span>
+        <span class="nyt">AP</span>
+        <span class="wsj">Reuters</span>
       </div>
       <canvas id="sharedChart" height="400"></canvas>
     </div>`);
@@ -338,11 +338,11 @@ function renderDashboard(data) {
       <h2>Distinctive Words</h2>
       <div class="pills-row">
         <div class="pill-group">
-          <h3 style="color:${NYT_COLOR}">NYT Only</h3>
+          <h3 style="color:${NYT_COLOR}">AP Only</h3>
           <div class="pills" id="nytPills"></div>
         </div>
         <div class="pill-group">
-          <h3 style="color:${WSJ_COLOR}">WSJ Only</h3>
+          <h3 style="color:${WSJ_COLOR}">Reuters Only</h3>
           <div class="pills" id="wsjPills"></div>
         </div>
       </div>
@@ -361,11 +361,11 @@ function renderDashboard(data) {
   app.insertAdjacentHTML('beforeend', `
     <div class="chart-row">
       <div class="chart-box doughnut-box">
-        <h3 style="color:${NYT_COLOR}">NYT Top 10 Proportions</h3>
+        <h3 style="color:${NYT_COLOR}">AP Top 10 Proportions</h3>
         <canvas id="nytDoughnut"></canvas>
       </div>
       <div class="chart-box doughnut-box">
-        <h3 style="color:${WSJ_COLOR}">WSJ Top 10 Proportions</h3>
+        <h3 style="color:${WSJ_COLOR}">Reuters Top 10 Proportions</h3>
         <canvas id="wsjDoughnut"></canvas>
       </div>
     </div>`);
@@ -417,7 +417,7 @@ function createSharedChart(canvasId, items) {
       labels: items.map(i => i.word),
       datasets: [
         {
-          label: 'NYT',
+          label: 'AP',
           data: items.map(i => i.nyt),
           backgroundColor: NYT_BG,
           borderColor: NYT_COLOR,
@@ -425,7 +425,7 @@ function createSharedChart(canvasId, items) {
           borderRadius: 4,
         },
         {
-          label: 'WSJ',
+          label: 'Reuters',
           data: items.map(i => i.wsj),
           backgroundColor: WSJ_BG,
           borderColor: WSJ_COLOR,
@@ -453,7 +453,7 @@ function createRadarChart(canvasId, radar) {
       labels: radar.categories,
       datasets: [
         {
-          label: 'NYT',
+          label: 'AP',
           data: radar.nyt,
           borderColor: NYT_COLOR,
           backgroundColor: 'rgba(26, 106, 255, 0.15)',
@@ -461,7 +461,7 @@ function createRadarChart(canvasId, radar) {
           pointBackgroundColor: NYT_COLOR,
         },
         {
-          label: 'WSJ',
+          label: 'Reuters',
           data: radar.wsj,
           borderColor: WSJ_COLOR,
           backgroundColor: 'rgba(232, 127, 36, 0.15)',
@@ -499,7 +499,7 @@ function createRadarBarChart(canvasId, radar) {
       labels: radar.categories,
       datasets: [
         {
-          label: 'NYT',
+          label: 'AP',
           data: radar.nyt,
           backgroundColor: NYT_BG,
           borderColor: NYT_COLOR,
@@ -507,7 +507,7 @@ function createRadarBarChart(canvasId, radar) {
           borderRadius: 4,
         },
         {
-          label: 'WSJ',
+          label: 'Reuters',
           data: radar.wsj,
           backgroundColor: WSJ_BG,
           borderColor: WSJ_COLOR,
