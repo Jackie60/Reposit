@@ -1,0 +1,20 @@
+{
+  "name": "news-word-dashboard",
+  "version": "1.0.0",
+  "description": "Auto-updating NYT vs WSJ word frequency dashboard",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "fetch": "node -e \"require('./fetcher').fetchAllSources().then(console.log).catch(console.error)\"",
+    "analyze": "node -e \"require('./analyzer').runAnalysis().then(console.log).catch(console.error)\""
+  },
+  "keywords": ["news", "nlp", "dashboard", "nyt", "wsj"],
+  "license": "MIT",
+  "dependencies": {
+    "compromise": "^14.14.3",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "natural": "^8.0.1",
+    "node-cron": "^3.0.3"
+  }
+}
